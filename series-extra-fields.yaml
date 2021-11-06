@@ -1,0 +1,5 @@
+next: str(exclude = " ")
+previous: str(exclude = " ")
+original: str(exclude = " ")
+sequence: num()
+series_total: num()
