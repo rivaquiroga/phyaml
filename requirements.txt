@@ -1,0 +1,2 @@
+python-frontmatter~=1.0.0
+yamale~=4.0.1
