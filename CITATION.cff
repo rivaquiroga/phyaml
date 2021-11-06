@@ -1,0 +1,21 @@
+abstract: A Python script that validates a Programming Historian lesson file (.md)
+    against a YAML schema.
+authors:
+  - family-names: Quiroga
+    given-names: Riva
+    orcid: "https://orcid.org/0000-0002-1147-4135"
+  - family-names: Vaughan
+    given-names: Nicolas
+    orcid: "https://orcid.org/0000-0002-2877-0539"
+cff-version: 1.2.0
+date-released: "2021-11-06"
+keywords:
+  - Python
+  - YAML
+  - "Programming Historian"
+license: GPL-3.0
+licence-url: "https://www.gnu.org/licenses/gpl-3.0.en.html"
+message: If you use this software, please cite it using these metadata.
+repository-code: "https://github.com/rivaquiroga/phyaml"
+title: phimages
+version: 0.1
