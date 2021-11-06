@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """ Validates a Programming Historian lesson file (.md)
     against a YAML schema.
-    Created by Nicolas Vaughan (nivaca@fastmail.com), 2021. """
+    Created by Riva Quiraga (riva.quiroga@uc.cl) and
+    Nicolas Vaughan (nivaca@fastmail.com), 2021. """
+
 import click
 import os
 import re
