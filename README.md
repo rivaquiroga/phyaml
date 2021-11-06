@@ -2,7 +2,7 @@
 
 # phyaml
 
-## A very first draft of a YAML validator for Programming Historian lessons.
+## A simple YAML validator for Programming Historian lessons.
 
 ## USAGE:
 
