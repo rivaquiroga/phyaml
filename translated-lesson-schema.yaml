@@ -1,5 +1,5 @@
 title: str()
-colection: enum('lessons')
+collection: enum('lessons')
 layout: enum('lesson')
 slug: str(exclude = " ")
 date: day()

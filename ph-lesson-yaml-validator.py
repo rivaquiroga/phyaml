@@ -3,7 +3,7 @@ import frontmatter
 
 schema = yamale.make_schema('./original-lesson-schema.yaml')
 
-lesson = frontmatter.load('./LESSON-FILE.md')
+lesson = frontmatter.load('/PATH/TO/LESSON-FILE.md')
 
 md_text = frontmatter.dumps(lesson)
 
