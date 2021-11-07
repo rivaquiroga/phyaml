@@ -4,12 +4,12 @@
     Created by Riva Quiroga (riva.quiroga@uc.cl) and
     Nicolas Vaughan (nivaca@fastmail.com), 2021. """
 
-import click
 import os
 import re
 import sys
-from yamale import YamaleError, make_data, make_schema, validate, schema
 from typing import Type
+import click
+from yamale import YamaleError, make_data, make_schema, validate, schema
 
 VERSION = "0.1 (2021-11-06)"
 TRANS_SCHEMA = "translated-lesson-schema.yaml"
