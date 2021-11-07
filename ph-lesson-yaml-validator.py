@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """ Validates a Programming Historian lesson file (.md)
     against a YAML schema.
-    Created by Riva Quiraga (riva.quiroga@uc.cl) and
+    Created by Riva Quiroga (riva.quiroga@uc.cl) and
     Nicolas Vaughan (nivaca@fastmail.com), 2021. """
 
 import click
 import os
 import re
 import sys
-import yamale
-from yamale import YamaleError
+from yamale import YamaleError, make_data, make_schema, validate
+from typing import Type
+
 
 VERSION = "0.1 (2021-11-06)"
 TRANS_SCHEMA = "translated-lesson-schema.yaml"
@@ -25,17 +26,17 @@ def get_metadata(fulltext: str):  # TODO: find type of yamale meta_data object
         click.secho('Error! No metadata found in file.', fg='red')
         sys.exit(1)
     metadata = match.group(1)
-    return yamale.make_data(content=metadata)
+    return make_data(content=metadata)
 
 
 def select_schema(data):  # TODO: find schema type
     datadict = data[0][0]
     if "translator" in datadict.keys():
-        schema = yamale.make_schema(TRANS_SCHEMA)
+        schema = make_schema(TRANS_SCHEMA)
         schemafname = TRANS_SCHEMA
         lessontype = 'translation'
     else:
-        schema = yamale.make_schema(ORIG_SCHEMA)
+        schema = make_schema(ORIG_SCHEMA)
         schemafname = ORIG_SCHEMA
         lessontype = 'original lesson'
     click.secho(f"Lesson type: {lessontype}", fg='blue')
@@ -45,7 +46,7 @@ def select_schema(data):  # TODO: find schema type
 
 def validate_data(schema, data: str, inputfile: str):  # todo: find schema type
     try:
-        yamale.validate(schema, data)
+        validate(schema, data)
         click.secho('Validation successful!', fg='green')
     except YamaleError as e:
         click.secho('Validation failed!', fg='red')
@@ -88,7 +89,7 @@ def main(inputfile: str, schemafile: str):
 
     if schemafile:
         click.secho(f"Using schema file: {schemafile}", fg='blue')
-        schema = yamale.make_schema(schemafile)
+        schema = make_schema(schemafile)
     else:
         schema = select_schema(data)
 
