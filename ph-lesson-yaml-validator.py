@@ -4,20 +4,19 @@
     Created by Riva Quiroga (riva.quiroga@uc.cl) and
     Nicolas Vaughan (nivaca@fastmail.com), 2021. """
 
-import click
 import os
 import re
 import sys
-from yamale import YamaleError, make_data, make_schema, validate
 from typing import Type
-
+import click
+from yamale import YamaleError, make_data, make_schema, validate, schema
 
 VERSION = "0.1 (2021-11-06)"
 TRANS_SCHEMA = "translated-lesson-schema.yaml"
 ORIG_SCHEMA = "original-lesson-schema.yaml"
 
 
-def get_metadata(fulltext: str):  # TODO: find type of yamale meta_data object
+def get_metadata(fulltext: str) -> list:
     """ Given a text, extract the metadata section (between '---' and '---')
     and return a yamale meta_data object. """
     pattern = r'--- ?\n(.+?)--- ?\n'
@@ -29,7 +28,7 @@ def get_metadata(fulltext: str):  # TODO: find type of yamale meta_data object
     return make_data(content=metadata)
 
 
-def select_schema(data):  # TODO: find schema type
+def select_schema(data: list) -> schema.Schema:
     datadict = data[0][0]
     if "translator" in datadict.keys():
         schema = make_schema(TRANS_SCHEMA)
@@ -44,10 +43,11 @@ def select_schema(data):  # TODO: find schema type
     return schema
 
 
-def validate_data(schema, data: str, inputfile: str):  # todo: find schema type
+def validate_data(schema: schema.Schema, data: str, inputfile: str):
     try:
         validate(schema, data)
         click.secho('Validation successful!', fg='green')
+        sys.exit(0)
     except YamaleError as e:
         click.secho('Validation failed!', fg='red')
         for result in e.results:
